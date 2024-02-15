@@ -28,11 +28,10 @@ export default function RootLayout({
         <body>
           {children}
           {/* Include your scripts here using next/script */}
-          <Script src="assets/js/vendors/counterup.js" type="module" />
-          <Script src="assets/js/vendors/swiper-bundle.min.js" />
-          <Script src="assets/js/vendors/fslightbox.js" />
-          <Script src="assets/js/vendors/jos.min.js" />
-          <Script src="assets/js/vendors/menu.js" />
+          <script src="assets/libs/tiny-slider/min/tiny-slider.js"></script>
+          <script src="assets/libs/feather-icons/feather.min.js"></script>
+          <script src="assets/js/plugins.init.js"></script>
+          <script src="assets/js/app.js"></script>
         </body>
       </ThemeProvider>
     </html>

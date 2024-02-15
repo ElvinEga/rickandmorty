@@ -43,100 +43,59 @@ const Navbar = () => {
 
   return (
     <>
-      {/*...::: Header Start :::... */}
-      <header
-        className="site-header site-header--absolute is--white py-3"
-        id="sticky-menu"
+      {/* Start Navbar */}
+      <nav
+        id="topnav"
+        className="defaultscroll is-sticky bg-white dark:bg-slate-900"
       >
-        <div className="global-container">
-          <div className="flex items-center justify-between gap-x-8">
-            {/* Header Logo */}
-            <Link href="/" className="">
-              <img
-                src="img/Rick  and Morty Universe_bw.svg"
-                width={180}
-                height={24}
-              />
-            </Link>
-            {/* Header Logo */}
-            {/* Header Navigation */}
-            <div className="menu-block-wrapper">
-              <div className="menu-overlay" />
-              <nav className="menu-block" id="append-menu-header">
-                <div className="mobile-menu-head">
-                  <div className="go-back">
-                    <img
-                      className="dropdown-icon"
-                      src="assets/img/icon-black-long-arrow-right.svg"
-                      alt="cheveron-right"
-                      width={16}
-                      height={16}
-                    />
-                  </div>
-                  <div className="current-menu-title" />
-                  <div className="mobile-menu-close">×</div>
-                </div>
-                <ul className="site-menu-main">
-                  <li className="nav-item">
-                    <Link href="/" className="nav-link-item">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="#tech" className="nav-link-item">
-                      Guiding principles
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="#core" className="nav-link-item">
-                      Core Capabilities
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="#about" className="nav-link-item">
-                      Who we are
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="/contact" className="nav-link-item">
-                      Contact Us
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            {/* Header Navigation */}
-            {/* Header User Event */}
-            <div className="flex items-center gap-6">
-              <Link
-                href="https://app.Rick  and Morty Universe/login/"
-                className="button hidden rounded-[50px] border-[#7F8995] bg-transparent text-black after:bg-colorOrangyRed hover:border-colorOrangyRed hover:text-white lg:inline-block"
-              >
-                Login
-              </Link>
-              <Link
-                href="https://app.Rick  and Morty Universe/signup/"
-                className="button hidden rounded-[50px] border-colorViolet bg-colorViolet text-white after:bg-colorOrangyRed hover:border-colorOrangyRed hover:text-white lg:inline-block"
-              >
-                Sign up
-              </Link>
-              {/* Responsive Offcanvas Menu Button */}
-              <div className="block lg:hidden">
-                <button
-                  id="openBtn"
-                  className="hamburger-menu mobile-menu-trigger"
-                >
-                  <span />
-                  <span />
-                  <span />
-                </button>
+        <div className="container">
+          {/* Logo container*/}
+          <Link className="logo pl-0" href="index.html">
+            <img
+              src="assets/img/logo.svg"
+              className="inline-block w-32"
+              alt=""
+            />
+          </Link>
+          <ul className="buy-button list-none mb-0">
+            <li className="inline mb-0">
+              <div className="btn btn-icon rounded-full bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-indigo-600 hover:text-white">
+                <ThemeChanger />
               </div>
-            </div>
-            {/* Header User Event */}
+            </li>
+          </ul>
+          <div id="navigation">
+            {/* Navigation Menu*/}
+            <ul className="navigation-menu">
+              <li>
+                <Link href="index.html" className="sub-menu-item">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="index.html" className="sub-menu-item">
+                  Locations
+                </Link>
+              </li>
+              <li>
+                <Link href="index.html" className="sub-menu-item">
+                  Characters
+                </Link>
+              </li>
+              <li>
+                <Link href="index.html" className="sub-menu-item">
+                  Episodes
+                </Link>
+              </li>
+            </ul>
+            {/*end navigation menu*/}
           </div>
+          {/*end navigation*/}
         </div>
-      </header>
-      {/*...::: Header End :::... */}
+        {/*end container*/}
+      </nav>
+      {/*end header*/}
+      {/* End Navbar */}
     </>
   );
 };

@@ -10,7 +10,7 @@
 @import url("assets/css/vendors/menu.css"); */
 
 /* Custom CSS */
-/* @import url("assets/css/custom.css"); */
+@import url("css/custom.css");
 
 /* Development CSS */
 /* @import url("assets/css/style.css"); */
