@@ -2,27 +2,10 @@
 
 import Link from "next/link";
 import ThemeChanger from "./DarkSwitch";
-import Image from "next/image";
-import { Disclosure } from "@headlessui/react";
 import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
-  const navigation = [
-    "About",
-    "Products",
-    // "Adapta CS",
-    "Climate Fund",
-    "Our Team",
-    "Contact",
-  ];
-  const linkUrl = [
-    "#about",
-    "#products",
-    // "#adaptcs",
-    "#climatefund",
-    "#team",
-    "#contact",
-  ];
+  const navigation = ["/", "/locations", "/characters"];
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
@@ -68,23 +51,18 @@ const Navbar = () => {
             {/* Navigation Menu*/}
             <ul className="navigation-menu">
               <li>
-                <Link href="index.html" className="sub-menu-item">
+                <Link href={navigation[0]} className="sub-menu-item">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="index.html" className="sub-menu-item">
+                <Link href={navigation[1]} className="sub-menu-item">
                   Locations
                 </Link>
               </li>
               <li>
-                <Link href="index.html" className="sub-menu-item">
+                <Link href={navigation[2]} className="sub-menu-item">
                   Characters
-                </Link>
-              </li>
-              <li>
-                <Link href="index.html" className="sub-menu-item">
-                  Episodes
                 </Link>
               </li>
             </ul>

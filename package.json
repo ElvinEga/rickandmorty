@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
+    "@preline/tooltip": "^2.0.2",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",

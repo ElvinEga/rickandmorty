@@ -1,13 +1,13 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 const config: Config = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    'node_modules/preline/dist/*.js',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "node_modules/preline/dist/*.js",
   ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
@@ -24,6 +24,6 @@ const config: Config = {
   variants: {
     extend: {},
   },
-  plugins: [ require('preline/plugin'),require("@tailwindcss/aspect-ratio")],
-}
-export default config
+  plugins: [require("preline/plugin"), require("@tailwindcss/aspect-ratio")],
+};
+export default config;

@@ -1,4 +1,5 @@
 import HeroSection from "@/components/hero";
+import LocationSection from "@/components/locations";
 import Navbar from "@/components/navbar";
 
 import Head from "next/head";
@@ -14,10 +15,11 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="page-wrapper relative z-[1] bg-[#F6F6EB]">
+      <div className="page-wrapper relative z-[1]">
         <Navbar />
         <main className="main-wrapper relative overflow-hidden">
           <HeroSection />
+          <LocationSection />
         </main>
       </div>
     </>

@@ -12,6 +12,8 @@
 /* Custom CSS */
 @import url("css/custom.css");
 
+@import url("css/choices.css");
+
 /* Development CSS */
 /* @import url("assets/css/style.css"); */
 */ html {
