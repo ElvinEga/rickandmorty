@@ -1,3 +1,4 @@
+import HeroSection from "@/components/hero";
 import Navbar from "@/components/navbar";
 
 import Head from "next/head";
@@ -15,7 +16,9 @@ export default function Home() {
       </Head>
       <div className="page-wrapper relative z-[1] bg-[#F6F6EB]">
         <Navbar />
-        <main className="main-wrapper relative overflow-hidden"></main>
+        <main className="main-wrapper relative overflow-hidden">
+          <HeroSection />
+        </main>
       </div>
     </>
   );
