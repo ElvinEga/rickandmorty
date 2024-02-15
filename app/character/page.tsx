@@ -1,10 +1,29 @@
-import HeroSection from "@/components/hero";
-import LocationSection from "@/components/locations";
+"use client";
+import axios from "@/api/axios";
+import { CharacterRepsonse } from "@/api/data/characterResponse";
 import Navbar from "@/components/navbar";
-
 import Head from "next/head";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Character() {
+  const searchParams = useSearchParams();
+  const characterId = searchParams.get("id");
+  const [character, setCharacter] = useState<CharacterRepsonse | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<CharacterRepsonse>(
+          `/character/${characterId}`
+        );
+        setCharacter(response.data);
+      } catch (error) {
+        console.error("Error fetching character data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <Head>
@@ -26,7 +45,7 @@ export default function Character() {
                   <div className="lg:col-span-6 md:col-span-5">
                     <div className="sticky top-20">
                       <img
-                        src="https://rickandmortyapi.com/api/character/avatar/200.jpeg"
+                        src={character?.image}
                         className="rounded-md shadow-md dark:shadow-gray-800 h-full w-full"
                         alt=""
                       />
@@ -36,35 +55,40 @@ export default function Character() {
                   <div className="lg:col-span-6 md:col-span-7">
                     <div className="">
                       <h5 className="lg:text-4xl lg:leading-relaxed text-2xl font-semibold">
-                        Lawyer Morty
+                        {character?.name}
                       </h5>
                       <div className="grid md:grid-cols-2 grid-cols-1 mt-6">
                         <div>
                           <h6 className="text-lg font-semibold">Location:</h6>
                           <h6 className="text-2xl font-semibold mt-2">
-                            Earth (Replacement Dimension)
+                            {character?.location.name}
                           </h6>
                         </div>
                         <div>
                           <h6 className="text-lg font-semibold">Origin:</h6>
                           <h6 className="text-2xl font-semibold mt-2">
-                            Earth (Replacement Dimension)
+                            {character?.location.name}
                           </h6>
                         </div>
                         <div>
                           <h6 className="text-lg font-semibold mt-4">
                             Species:
                           </h6>
-                          <h6 className="text-2xl font-semibold mt-2">Human</h6>
+                          <h6 className="text-2xl font-semibold mt-2">
+                            {character?.species}
+                          </h6>
                           <h6 className="text-slate-400 mt-4">
-                            <span>Status </span> Unkown
+                            <span>Status </span>
+                            {character?.status}
                           </h6>
                         </div>
                         <div>
                           <h6 className="text-lg font-semibold mt-4">
                             Gender:
                           </h6>
-                          <h6 className="text-2xl font-semibold mt-2">Male</h6>
+                          <h6 className="text-2xl font-semibold mt-2">
+                            {character?.gender}
+                          </h6>
                         </div>
                       </div>
                       <div className="grid grid-cols-1 mt-8">

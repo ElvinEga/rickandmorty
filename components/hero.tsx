@@ -40,10 +40,10 @@ const HeroSection = () => {
                               placeholder="Search your keaywords"
                             />
                           </div>
-                          <div className="filter-search-form relative filter-border">
+                          <div className="mx-1 filter-search-form relative filter-border">
                             <i className="uil uil-map-marker icons" />
                             <select
-                              className="form-select"
+                              className="py-5 px-4 pe-9 block w-full bg-gray-50  text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900  dark:text-gray-400 dark:focus:ring-gray-600"
                               data-trigger=""
                               name="choices-location"
                               id="choices-location"
@@ -65,7 +65,7 @@ const HeroSection = () => {
                           <div className="filter-search-form relative filter-border">
                             <i className="uil uil-briefcase-alt icons" />
                             <select
-                              className="form-select"
+                              className="py-5 px-4 pe-9 block w-full bg-gray-50  text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900  dark:text-gray-400 dark:focus:ring-gray-600"
                               data-trigger=""
                               name="choices-type"
                               id="choices-type"
@@ -84,7 +84,7 @@ const HeroSection = () => {
                             type="submit"
                             id="search"
                             name="search"
-                            className="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-100 rounded-xl"
+                            className="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-100 rounded-xl ml-2"
                             defaultValue="Search"
                           />
                         </div>
