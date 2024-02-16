@@ -2,6 +2,8 @@
 
 This is the landing page for the Rick and Morty Universe, built with Next.js, TypeScript, and Tailwind CSS.
 
+![Screenshot 2024-02-16 at 17-53-27 https __rickandmorty-ruddy-nine vercel app](https://github.com/ElvinEga/rickandmorty/assets/12608507/c21250e4-b346-47ff-92ff-232c2752b9e8)
+
 ## Technologies
 
 The project is built using the following technologies:
