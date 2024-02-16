@@ -45,6 +45,50 @@ To start the development server and view the landing page, run the following com
 
 Open your web browser and visit http://localhost:3000 to see the Devportfolio landing page in action.
 
+Absolutely! Here's how you can update your README to mention the Rick and Morty API:
+
+**In the Features section:**
+
+- Add a bullet point stating: "Data sourced from the official Rick and Morty API: [https://rickandmortyapi.com/api](https://rickandmortyapi.com/api)"
+
+**In the Getting Started section:**
+
+- Before running the development server, add a step for installing an API client library to interact with the Rick and Morty API. You can recommend popular libraries like `axios` or `fetch`.
+
+**Under Project Structure:**
+
+- Inside the `src/lib` directory, mention the file name responsible for interacting with the API (e.g., `api.ts`).
+
+**In the `api.ts` file (or its equivalent):**
+
+- Document the functions used to fetch data from the API, highlighting the endpoints used and how they are utilized.
+
+**Remember to replace placeholders with actual filenames and details specific to your implementation.**
+
+Here's an example snippet for `api.ts`:
+
+```typescript
+// api.ts
+
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "https://rickandmortyapi.com/api",
+});
+
+export const fetchCharacters = async (page: number = 1) => {
+  const response = await api.get(`/character?page=${page}`);
+  return response.data;
+};
+
+export const fetchLocations = async (page: number = 1) => {
+  const response = await api.get(`/location?page=${page}`);
+  return response.data;
+};
+```
+
+By adding these updates, your README will clearly communicate the use of the Rick and Morty API and provide developers with valuable information for setting up and running the project.
+
 ## Deployment
 
 Follow these steps to deploy the Devportfolio landing page:
