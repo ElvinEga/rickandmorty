@@ -3,7 +3,12 @@
 import { LocationResponse } from "@/api/data/locationResponse";
 import Link from "next/link";
 
-const LocationSection: React.FC<LocationResponse> = ({ results, info }) => {
+const LocationSection: React.FC<LocationResponse> = ({
+  results,
+  info,
+  fetchMoreLocations,
+  isLoading,
+}) => {
   return (
     <>
       <div className="container lg:mt-24 mt-16">
@@ -24,11 +29,13 @@ const LocationSection: React.FC<LocationResponse> = ({ results, info }) => {
               className="group rounded-md bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500"
             >
               <div className="relative">
-                <img
-                  src="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/02/bird-World-Rick-and-Morty.jpg?q=50&fit=crop&w=1500&dpr=1.5"
-                  alt=""
-                  className="h-64 object-cover"
-                />
+                <Link href={`/location?id=${location.id}`}>
+                  <img
+                    src="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/02/bird-World-Rick-and-Morty.jpg?q=50&fit=crop&w=1500&dpr=1.5"
+                    alt=""
+                    className="h-64 object-cover group-hover:scale-110 ease-in-out duration-500"
+                  />
+                </Link>
                 <div className="absolute top-2 right-2">
                   <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">
                     {location.type}
@@ -97,10 +104,10 @@ const LocationSection: React.FC<LocationResponse> = ({ results, info }) => {
                   )}
                   {location.residents.length < 1 && (
                     <div
-                      className="bg-gray-100 border border-gray-200 text-sm text-gray-800 rounded-lg p-4 dark:bg-white/10 dark:border-white/20 dark:text-white"
+                      className="bg-gray-100 border border-gray-200 text-sm text-gray-800 rounded-lg p-4 dark:bg-white/10 dark:border-white/20 dark:text-slate-800 "
                       role="alert"
                     >
-                      <span className="font-bold">Alert!</span> Characters in
+                      <span className="font-bold ">Alert!</span> Characters in
                       this location will be updated soon.
                     </div>
                   )}
@@ -110,14 +117,26 @@ const LocationSection: React.FC<LocationResponse> = ({ results, info }) => {
           ))}
         </div>
 
-        <div className="md:flex justify-center text-center mt-6">
-          <div className="md:w-full">
-            <a
-              href="property-listing.html"
-              className="btn btn-link text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+        {isLoading && (
+          <div className="flex justify-center">
+            <div
+              className="animate-spin inline-block h-16 w-16 mt-10 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+              role="status"
+              aria-label="loading"
             >
-              View More Properties <i className="uil uil-arrow-right ml-1" />
-            </a>
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
+
+        <div className="md:flex justify-center text-center my-10">
+          <div className="md:w-full">
+            <button
+              onClick={fetchMoreLocations}
+              className="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md"
+            >
+              Load More <i className="uil uil-arrow-right ml-1" />
+            </button>
           </div>
         </div>
       </div>

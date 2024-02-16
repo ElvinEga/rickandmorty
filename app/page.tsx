@@ -12,20 +12,28 @@ import { LocationResponse, Result } from "@/api/data/locationResponse";
 export default function Home() {
   const [locations, setLocations] = useState<Result[]>([]);
   const [locationResponse, setLocationResponse] = useState<LocationResponse>();
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        const response = await axios.get("/location");
-        setLocationResponse(response.data);
-        // setLocations(locationResponse?.results || []);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching locations:", error);
-      }
-    };
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
-    fetchLocations();
-  }, []);
+  const fetchLocations = async (page: number) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`/location?page=${page}`);
+      setLocationResponse(response.data);
+      setLocations((prevLocations) => [
+        ...prevLocations,
+        ...(response.data.results || []),
+      ]);
+    } catch (error) {
+      console.error("Error fetching locations:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false, even on error
+    }
+  };
+
+  useEffect(() => {
+    fetchLocations(currentPage);
+  }, [currentPage]);
   return (
     <>
       <Head>
@@ -40,9 +48,14 @@ export default function Home() {
         <Navbar />
         <main className="main-wrapper relative overflow-hidden">
           <HeroSection />
+
           <LocationSection
             results={locationResponse?.results || []}
             info={locationResponse?.info}
+            fetchMoreLocations={() =>
+              setCurrentPage((prevPage) => prevPage + 1)
+            }
+            isLoading={isLoading}
           />
         </main>
       </div>

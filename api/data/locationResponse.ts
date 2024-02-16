@@ -1,6 +1,8 @@
 export interface LocationResponse {
   info?: Info;
   results: Result[];
+  fetchMoreLocations?: () => void;
+  isLoading?: boolean;
 }
 
 export interface Info {

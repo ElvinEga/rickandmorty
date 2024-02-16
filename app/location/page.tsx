@@ -18,7 +18,7 @@ export default function Location() {
     const fetchData = async () => {
       try {
         const response = await axios.get<LocationData>(
-          `location/${locationId}`
+          `location/${locationId || ""}`
         );
         setLocation(response.data);
 
@@ -67,14 +67,14 @@ export default function Location() {
                   <div className="container">
                     <div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10">
                       {characters.map((character) => (
-                        <a
+                        <Link
                           className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                          href="#"
+                          href={`/character?id=${character.id}`}
                         >
                           <div className="sm:flex">
                             <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-56 sm:w-56 h-56">
                               <img
-                                className="group-hover:scale-105 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl"
+                                className="group-hover:scale-125 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl"
                                 src={character.image}
                                 alt="Image Description"
                               />
@@ -120,25 +120,22 @@ export default function Location() {
                               </Link>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       ))}
-                    </div>
-                    <div className="grid md:grid-cols-12 grid-cols-1 mt-16">
-                      <div className="md:col-span-12 text-center">
-                        <a
-                          href=""
-                          className="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md"
-                        >
-                          <i className="uil uil-process mdi-spin me-1" /> Load
-                          More
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </section>
               </>
             ) : (
-              <p>Loading...</p>
+              <div className="flex justify-center">
+                <div
+                  className="animate-spin inline-block h-16 w-16 m-44 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+                  role="status"
+                  aria-label="loading"
+                >
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
             )}
             {/* End */}
           </>
