@@ -1,42 +1,26 @@
 "use client";
 
 import Navbar from "@/components/navbar";
-import { useSearchParams } from "next/navigation";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import axios from "@/api/axios";
 import { CharacterRepsonse } from "@/api/data/characterResponse";
-import { LocationData } from "@/api/data/locationResponse";
 import Link from "next/link";
 import Footer from "@/components/footer";
 
-export default function Location() {
-  const searchParams = useSearchParams();
-  const locationId = searchParams.get("id");
-  const [location, setLocation] = useState<LocationData | null>(null);
+export default function CharacterPage() {
   const [characters, setCharacters] = useState<CharacterRepsonse[]>([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<LocationData>(
-          `location/${locationId || ""}`
-        );
-        setLocation(response.data);
 
-        // Fetch and set character data for each resident
-        const charactersData = await Promise.all(
-          response.data.residents.map(async (residentUrl) => {
-            const characters = await axios.get(residentUrl);
-            return characters.data;
-          })
-        );
-        setCharacters(charactersData);
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const response = await axios.get(`/character`);
+        setCharacters(response.data.results);
       } catch (error) {
-        console.error("Error fetching location data:", error);
+        console.error("Error fetching characters:", error);
       }
     };
-
-    fetchData();
+    fetchCharacters();
   }, []);
   return (
     <>
@@ -55,8 +39,8 @@ export default function Location() {
                 <section className="relative table w-full py-32 lg:py-40 bg-gradient-to-br to-orange-600/20 via-fuchsia-600/20 from-indigo-600/20">
                   <div className="container">
                     <div className="grid grid-cols-1 text-center mt-10">
-                      <h3 className="text-3xl leading-normal font-medium">
-                        {location.name}
+                      <h3 className="text-6xl leading-normal font-bold">
+                        Characters
                       </h3>
                     </div>
                   </div>

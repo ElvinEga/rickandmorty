@@ -1,6 +1,7 @@
 "use client";
 import axios from "@/api/axios";
 import { CharacterRepsonse } from "@/api/data/characterResponse";
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
@@ -10,6 +11,8 @@ export default function Character() {
   const searchParams = useSearchParams();
   const characterId = searchParams.get("id");
   const [character, setCharacter] = useState<CharacterRepsonse | null>(null);
+  const [notes, setNotes] = useState<string>("");
+  const [savedNote, setSavedNote] = useState<string | null>(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,14 +27,34 @@ export default function Character() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    // Retrieve the saved note from local storage when the component mounts
+    const savedNoteFromLocalStorage = localStorage.getItem(
+      `characterNotes_${characterId}`
+    );
+    setSavedNote(savedNoteFromLocalStorage);
+  }, [characterId]);
+
+  const handleNotesChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNotes(event.target.value);
+  };
+
+  const handleSaveNotes = async () => {
+    try {
+      localStorage.setItem(`characterNotes_${characterId}`, notes);
+      setSavedNote(notes);
+      alert("Notes saved successfully!");
+    } catch (error) {
+      console.error("Error saving notes:", error);
+    }
+  };
+
   return (
     <>
       <Head>
         <title>Rick and Morty Universe</title>
-        <meta
-          name="Rick  and Morty Universe"
-          content="Utilizing AI, IOT & Geo-Information to Enhance Ecological, Agricultural and Economic Resilience & Sustainability Across Africa and BeyondLeading with Data for a Greener Future"
-        />
+        <meta name="Rick  and Morty Universe" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="page-wrapper relative z-[1]">
@@ -91,153 +114,67 @@ export default function Character() {
                           </h6>
                         </div>
                       </div>
-                      <div className="grid grid-cols-1 mt-8">
-                        <div id="StarterContent">
+                      <div>
+                        {savedNote && (
                           <div
-                            className=""
-                            id="tuesday"
-                            role="tabpanel"
-                            aria-labelledby="tuesday-tab"
+                            className="mt-4 bg-white border border-gray-200 rounded-lg shadow-lg p-4 dark:bg-gray-800 dark:border-gray-700"
+                            role="alert"
                           >
-                            <div className="grid grid-cols-1">
-                              <p className="text-slate-400 mb-4">
-                                Hey guys! New exploration about NFT Marketplace
-                                Web Design, this time I'm inspired by one of my
-                                favorite NFT website called Superex (with crypto
-                                payment)! What do you think?
-                              </p>
-                              <p className="text-slate-400 mb-4">
-                                What does it mean? Biomechanics is the study of
-                                the structure, function and motion of the
-                                mechanical aspects of biological systems, at any
-                                level from whole organisms to organs, cells and
-                                cell organelles, using the methods of mechanics.
-                                Biomechanics is a branch of biophysics.
-                              </p>
-                            </div>
-                          </div>
-                          <div
-                            className="hidden"
-                            id="wednesday"
-                            role="tabpanel"
-                            aria-labelledby="wednesday-tab"
-                          >
-                            <div className="grid grid-cols-1">
-                              <div className="flex items-center">
-                                <div className="relative">
-                                  <img
-                                    src="assets/images/client/01.jpg"
-                                    className="h-16 w-16 rounded-full shadow-md dark:shadow-gray-800"
-                                    alt=""
-                                  />
-                                </div>
-                                <div className="ml-3">
-                                  <h6 className="text-lg font-semibold">
-                                    2 WETH{" "}
-                                    <span className="text-slate-400">by</span>{" "}
-                                    <a
-                                      href=""
-                                      className="hover:text-indigo-600 duration-500 ease-in-out"
-                                    >
-                                      0xe849fa28a...ea14
-                                    </a>
-                                  </h6>
-                                  <span className="text-slate-400">
-                                    6 hours ago
-                                  </span>
-                                </div>
+                            <div className="flex">
+                              <div className="flex-shrink-0">
+                                <svg
+                                  className="flex-shrink-0 size-4 text-blue-600 mt-1"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width={24}
+                                  height={24}
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <circle cx={12} cy={12} r={10} />
+                                  <path d="M12 16v-4" />
+                                  <path d="M12 8h.01" />
+                                </svg>
                               </div>
-                              <div className="flex items-center mt-4">
-                                <div className="relative">
-                                  <img
-                                    src="assets/images/client/02.jpg"
-                                    className="h-16 w-16 rounded-full shadow-md dark:shadow-gray-800"
-                                    alt=""
-                                  />
-                                </div>
-                                <div className="ml-3">
-                                  <h6 className="text-lg font-semibold">
-                                    0.001 WETH{" "}
-                                    <span className="text-slate-400">by</span>{" "}
-                                    <a
-                                      href=""
-                                      className="hover:text-indigo-600 duration-500 ease-in-out"
-                                    >
-                                      VOTwear
-                                    </a>
-                                  </h6>
-                                  <span className="text-slate-400">
-                                    6 hours ago
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="flex items-center mt-4">
-                                <div className="relative">
-                                  <img
-                                    src="assets/images/client/03.jpg"
-                                    className="h-16 w-16 rounded-full shadow-md dark:shadow-gray-800"
-                                    alt=""
-                                  />
-                                </div>
-                                <div className="ml-3">
-                                  <h6 className="text-lg font-semibold">
-                                    1.225 WETH{" "}
-                                    <span className="text-slate-400">by</span>{" "}
-                                    <a
-                                      href=""
-                                      className="hover:text-indigo-600 duration-500 ease-in-out"
-                                    >
-                                      PandaOne
-                                    </a>
-                                  </h6>
-                                  <span className="text-slate-400">
-                                    6 hours ago
-                                  </span>
-                                </div>
+                              <div className="ms-3">
+                                <h3 className="text-gray-800 font-semibold dark:text-white">
+                                  Saved Note
+                                </h3>
+                                <p className="mt-2 text-sm text-gray-700 dark:text-gray-400">
+                                  {savedNote}
+                                </p>
                               </div>
                             </div>
                           </div>
-                          <div
-                            className="hidden"
-                            id="thursday"
-                            role="tabpanel"
-                            aria-labelledby="thursday-tab"
+                        )}
+                        <form className="w-full mt-16">
+                          <label
+                            htmlFor="notes"
+                            className="block text-sm font-medium mb-2 dark:text-white"
                           >
-                            <div className="grid grid-cols-1">
-                              <div className="rounded-md shadow dark:shadow-gray-800 p-6">
-                                <div className="flex items-center">
-                                  <div className="relative">
-                                    <img
-                                      src="assets/images/nft/items/1.jpg"
-                                      className="h-20 w-20 rounded-md shadow-md dark:shadow-gray-800"
-                                      alt=""
-                                    />
-                                    <div className="absolute top-0 left-0 translate-middle px-1 rounded-md shadow-md bg-white">
-                                      <i className="mdi mdi-account-check mdi-18px text-green-600" />
-                                    </div>
-                                  </div>
-                                  <span className="content ml-3">
-                                    <a
-                                      href=""
-                                      className="hover:text-indigo-600 text-lg block"
-                                    >
-                                      Digital Art Collection
-                                    </a>
-                                    <span className="text-slate-400 block mt-1">
-                                      Started Following{" "}
-                                      <a href="" className="link font-semibold">
-                                        @Panda
-                                      </a>
-                                    </span>
-                                    <span className="text-slate-400 block mt-1">
-                                      1 hours ago
-                                    </span>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                            Notes
+                          </label>
+                          <textarea
+                            id="notes"
+                            value={notes}
+                            onChange={handleNotesChange}
+                            className="py-3 px-4 block w-full border-gray-200 border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                            rows={4}
+                            placeholder="Add a Note ..."
+                            defaultValue={""}
+                          />
+
+                          <button
+                            type="button"
+                            className="mt-3 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                            onClick={handleSaveNotes}
+                          >
+                            Save Notes
+                          </button>
+                        </form>
                       </div>
                     </div>
                   </div>

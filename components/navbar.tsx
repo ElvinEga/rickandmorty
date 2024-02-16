@@ -33,7 +33,7 @@ const Navbar = () => {
       >
         <div className="container">
           {/* Logo container*/}
-          <Link className="logo pl-0" href="index.html">
+          <Link className="logo pl-0" href="/">
             <img
               src="assets/img/logo.svg"
               className="inline-block w-32"
@@ -56,13 +56,13 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link href={navigation[1]} className="sub-menu-item">
-                  Locations
+                <Link href={navigation[2]} className="sub-menu-item">
+                  Characters
                 </Link>
               </li>
               <li>
-                <Link href={navigation[2]} className="sub-menu-item">
-                  Characters
+                <Link href={navigation[1]} className="sub-menu-item">
+                  Locations
                 </Link>
               </li>
             </ul>

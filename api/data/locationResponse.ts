@@ -2,6 +2,9 @@ export interface LocationResponse {
   info?: Info;
   results: Result[];
   fetchMoreLocations?: () => void;
+  handleSearchInputChange?: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   isLoading?: boolean;
 }
 

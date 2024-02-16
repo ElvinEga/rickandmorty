@@ -1,8 +1,31 @@
 "use client";
 
-import Link from "next/link";
+import axios from "@/api/axios";
+import { CharacterRepsonse } from "@/api/data/characterResponse";
+import { Result } from "@/api/data/episodeResponse";
+import { LocationResponse } from "@/api/data/locationResponse";
+import { useEffect, useState } from "react";
 
-const HeroSection = () => {
+const HeroSection: React.FC<LocationResponse> = ({
+  results,
+  handleSearchInputChange,
+}) => {
+  const [episodes, setEpisodes] = useState<Result[]>([]);
+
+  // const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(null);
+  useEffect(() => {
+    const fetchEpisodes = async () => {
+      try {
+        const response = await axios.get("/episode");
+        setEpisodes(response.data.results);
+      } catch (error) {
+        console.error("Error fetching episodes:", error);
+      }
+    };
+
+    fetchEpisodes();
+  }, []);
+
   return (
     <>
       <>
@@ -35,9 +58,10 @@ const HeroSection = () => {
                             <input
                               name="name"
                               type="text"
-                              id="job-keyword"
+                              id="characterSearch"
+                              onChange={handleSearchInputChange}
                               className="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0"
-                              placeholder="Search your keaywords"
+                              placeholder="Search your Character"
                             />
                           </div>
                           <div className="mx-1 filter-search-form relative filter-border">
@@ -49,17 +73,12 @@ const HeroSection = () => {
                               id="choices-location"
                               aria-label="Default select example"
                             >
-                              <option value="AF">Location</option>
-                              <option value="AZ">Azerbaijan</option>
-                              <option value="BS">Bahamas</option>
-                              <option value="BH">Bahrain</option>
-                              <option value="CA">Canada</option>
-                              <option value="CV">Cape Verde</option>
-                              <option value="DK">Denmark</option>
-                              <option value="DJ">Djibouti</option>
-                              <option value="ER">Eritrea</option>
-                              <option value="EE">Estonia</option>
-                              <option value="GM">Gambia</option>
+                              <option value="">Location</option>
+                              {results.map((location) => (
+                                <option key={location.id} value={location.id}>
+                                  {location.name}
+                                </option>
+                              ))}
                             </select>
                           </div>
                           <div className="filter-search-form relative filter-border">
@@ -71,22 +90,23 @@ const HeroSection = () => {
                               id="choices-type"
                               aria-label="Default select example"
                             >
-                              <option selected="" value={1}>
-                                Episode Name
-                              </option>
-                              <option value={2}>Part Time</option>
-                              <option value={3}>Freelancer</option>
-                              <option value={4}>Remote Work</option>
-                              <option value={5}>Office Work</option>
+                              <option value={1}>Episode Name</option>
+                              {episodes.map((episode) => (
+                                <option key={episode.id} value={episode.id}>
+                                  {episode.name} ({episode.episode})
+                                </option>
+                              ))}
                             </select>
                           </div>
-                          <input
+                          <button
                             type="submit"
                             id="search"
+                            title="Search"
                             name="search"
                             className="btn bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn submit-btn w-100 rounded-xl ml-2"
-                            defaultValue="Search"
-                          />
+                          >
+                            Search
+                          </button>
                         </div>
                         {/*end grid*/}
                       </div>

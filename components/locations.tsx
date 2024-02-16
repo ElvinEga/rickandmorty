@@ -1,6 +1,7 @@
 "use client";
 
 import { LocationResponse } from "@/api/data/locationResponse";
+import locationImage from "@/helpers/locationImage";
 import Link from "next/link";
 
 const LocationSection: React.FC<LocationResponse> = ({
@@ -31,7 +32,7 @@ const LocationSection: React.FC<LocationResponse> = ({
               <div className="relative">
                 <Link href={`/location?id=${location.id}`}>
                   <img
-                    src="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/02/bird-World-Rick-and-Morty.jpg?q=50&fit=crop&w=1500&dpr=1.5"
+                    src={locationImage(location.type)}
                     alt=""
                     className="h-64 object-cover group-hover:scale-110 ease-in-out duration-500"
                   />

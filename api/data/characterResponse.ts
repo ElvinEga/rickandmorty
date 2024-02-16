@@ -22,3 +22,15 @@ export interface Location {
   name: string;
   url: string;
 }
+
+export interface CharacterData {
+  info: Info;
+  results: CharacterRepsonse[];
+}
+
+export interface Info {
+  count: number;
+  pages: number;
+  next: string;
+  prev: any;
+}
