@@ -15,11 +15,12 @@ const LocationSection: React.FC<LocationResponse> = ({
       <div className="container lg:mt-24 mt-16">
         <div className="grid grid-cols-1 pb-8 text-center">
           <h3 className="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">
-            Featured Properties
+            Interdimensional Realty
           </h3>
           <p className="text-slate-400 max-w-xl mx-auto">
-            Start working with Tailwind CSS that can provide everything you need
-            to generate awareness, drive traffic, connect.
+            Dive into the bizarre and extraordinary with our curated selection
+            of Featured Properties inspired by the eclectic and unpredictable
+            worlds of Rick and Morty
           </p>
         </div>
 

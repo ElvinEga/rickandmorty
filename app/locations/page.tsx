@@ -1,11 +1,9 @@
 "use client";
 
 import Navbar from "@/components/navbar";
-import { useSearchParams } from "next/navigation";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import axios from "@/api/axios";
-import { CharacterRepsonse } from "@/api/data/characterResponse";
 import {
   LocationData,
   LocationResponse,
@@ -53,7 +51,7 @@ export default function Location() {
           <>
             {/* Start Hero */}
             <>
-              <section className="relative table w-full py-32 lg:py-40 bg-gradient-to-br to-orange-600/20 via-fuchsia-600/20 from-indigo-600/20">
+              <section className="relative table w-full py-32 lg:py-40 bg-[url('/assets/img/header2.jpg')] bg-cover bg-center">
                 <div className="container">
                   <div className="grid grid-cols-1 text-center mt-10">
                     <h3 className="text-6xl leading-normal font-bold">

@@ -1,7 +1,6 @@
 "use client";
 import axios from "@/api/axios";
 import { CharacterRepsonse } from "@/api/data/characterResponse";
-import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
@@ -150,7 +149,7 @@ export default function Character() {
                             </div>
                           </div>
                         )}
-                        <form className="w-full mt-16">
+                        <form className="w-full mt-8">
                           <label
                             htmlFor="notes"
                             className="block text-sm font-medium mb-2 dark:text-white"
