@@ -35,7 +35,7 @@ const LocationSection: React.FC<LocationResponse> = ({
                   <img
                     src={locationImage(location.type)}
                     alt=""
-                    className="h-64 object-cover group-hover:scale-110 ease-in-out duration-500"
+                    className="h-64 object-cover w-full group-hover:scale-110 ease-in-out duration-500"
                   />
                 </Link>
                 <div className="absolute top-2 right-2">
